@@ -45,16 +45,13 @@ class App:
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        if pyxel.btnp(pyxel.KEY_Q): 
-            pyxel.quit()
+        if pyxel.btnp(pyxel.KEY_Q): pyxel.quit()
         if pyxel.btnp(pyxel.KEY_SPACE):
             if self.FLAG == 0 or self.FLAG == 3: self.FLAG = 1
             if self.FLAG == 2: self.trueReset(1)
         if self.FLAG == 1 and (pyxel.btnp(pyxel.KEY_Z) or pyxel.btnp(pyxel.KEY_X) or pyxel.btnp(pyxel.KEY_C)):
-            if (pyxel.btnp(pyxel.KEY_Z) and self.color == 8) or (pyxel.btnp(pyxel.KEY_X) and self.color == 10) or (pyxel.btnp(pyxel.KEY_C) and self.color == 12):
-                self.calc()
-            else:
-                self.loselife()
+            if (pyxel.btnp(pyxel.KEY_Z) and self.color == 8) or (pyxel.btnp(pyxel.KEY_X) and self.color == 10) or (pyxel.btnp(pyxel.KEY_C) and self.color == 12): self.calc()
+            else: self.loselife()
             self.reset()
         if self.r >= self.r2:
             self.loselife()
@@ -67,8 +64,7 @@ class App:
         if self.FLAG == 0:
             pyxel.text(64, 45, "N E O N", pyxel.frame_count % 16)
             self.title_circ(63, 64)
-            if(pyxel.frame_count % 60 < 30):
-                pyxel.text(34, 80, "press spacebar to start", 5)
+            if(pyxel.frame_count % 60 < 30): pyxel.text(34, 80, "press spacebar to start", 5)
         elif self.FLAG == 1:
             self.TIME -= 1
             pyxel.circ(self.x, self.y, self.r, self.color)
@@ -84,8 +80,7 @@ class App:
             pyxel.text(64, 45, "GAME OVER", pyxel.frame_count % 16)
             pyxel.text(61, 55, "score : " + str(self.SCORE), 7)
             if(pyxel.frame_count % 60 < 30):
-                if self.SCORE == self.BESTSCORE:
-                    pyxel.text(61, 65, "BEST SCORE!", 7)
+                if self.SCORE == self.BESTSCORE: pyxel.text(61, 65, "BEST SCORE!", 7)
                 pyxel.text(30, 90, "press spacebar to restart", 5)
         else:
             pyxel.text(64, 45, "LEVEL UP!", pyxel.frame_count % 16)

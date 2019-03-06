@@ -1,4 +1,4 @@
-import atexit, os, random, pyxel
+import os, random, pyxel
 
 SCREEN_WIDTH = 160
 SCREEN_HEIGHT = 120
@@ -10,6 +10,7 @@ class App:
         self.color = random.randrange(8, 13, 2)
 
     def levelup(self):
+        self.reset()
         self.FLAG = 3
         self.LEVEL += 1
         self.TIME = self.LEVEL * 200
@@ -28,7 +29,8 @@ class App:
     
     def calc(self):
         if(abs(self.r2 - self.r) < 2): self.SCORE += 20
-        else: self.SCORE += 10
+        elif(abs(self.r2 - self.r) < 5): self.SCORE += 10
+        else: self.SCORE += 0
         if self.SCORE >= self.BESTSCORE:
             self.BESTSCORE = self.SCORE
             f = open("bestscore.dat", "w")
